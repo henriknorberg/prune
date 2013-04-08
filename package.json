@@ -1,0 +1,25 @@
+{
+  "name": "prune",
+  "version": "0.0.1",
+  "description": "Prunes unused CSS from a HTML element",
+  "main": "index.js",
+  "dependencies": {
+    "cheerio": "~0.10.8",
+    "cssom": "~0.2.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/henriknorberg/prune"
+  },
+  "keywords": [
+    "CSS",
+    "optimization",
+    ""
+  ],
+  "author": "Henrik A. Norberg",
+  "license": "MIT"
+}
