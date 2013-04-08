@@ -1,18 +1,17 @@
+Prunes unused CSS from a HTML element
 
-    ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+```
+var prune = require("../index");
+var tap = require("assert");
 
+var html = '<body class="bodyclass"><div class="a1 c1">11111111<div src="sourceex" class="c2">222222222</div></div><div class="c3">33333333333</div><body>'
+var css = 'body-wrapper{background:#bbb}c1{background:#eee;color:#333}c2{background:#ddd}c3{background:#ccc}';  
 
-Hi there! Welcome to Cloud9 IDE!
+var pruned = prune("body",html, css);
+```
 
-To get you started, create some files, play with the terminal,
-or visit http://docs.c9.io for our documentation.
-If you want, you can also go watch some training videos at
-http://www.youtube.com/user/c9ide.
-
-Happy coding!
-The Cloud9 IDE team
+Returns: 
+```
+{ usedCss: 'c1{\n\tbackground:#eee;\n\tcolor:#333;\n}\n\nc2{\n\tbackground:#ddd;\n}\n\nc3{\n\tbackground:#ccc;\n}\n\n',
+  unUsedCss: 'body-wrapper{\n\tbackground:#bbb;\n}\n\n' }
+```  
