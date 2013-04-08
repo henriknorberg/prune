@@ -1,9 +1,10 @@
-Prunes unused CSS from a HTML element. 
-Takes a selector (element, calss, id), html, css as input and returns an object with used and unused css
-
+#Prune
+Cuts off unused CSS from a HTML element. 
 ```
 var pruned = prune(selector,html, css);
 ```
+Takes a selector (element, calss, id), html, css as input and returns an object with used and unused css
+
 
 ![Flowdiagram](http://upload.wikimedia.org/wikipedia/commons/6/6d/Renewalpruning.png)
 
