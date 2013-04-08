@@ -4,11 +4,11 @@ var cheerio = require('cheerio');
 module.exports = function (sel,html,css){
     var classes = []
     //load and parse html
-    var $ = cheerio.load(html);
-    var all = $(sel).find("*");
+    var markup = cheerio.load(html);
+    var cssInHtml = markup(sel).find("*");
     
     //get classes from html:  atributes -> css -> flatten the arrays
-    classes = [].concat.apply([],[].map.call(all,getAtribs).map(getClassesFromHtml));
+    classes = [].concat.apply([],[].map.call(cssInHtml,getAtribs).map(getClassesFromHtml));
     //console.log(classes) 
     
     //Get CSS styles from css: parse rules->filter selectors ->parseToString 
