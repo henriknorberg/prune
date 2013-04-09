@@ -6,10 +6,20 @@ module.exports = function (sel,html,css){
     //load and parse html
     var markup = cheerio.load(html);
     var cssInHtml = markup(sel).find("*");
+    //var kids = markup(sel).find("*");
     
-    //get classes from html:  atributes -> css -> flatten the arrays
+    //Add in sel classes
+    cssInHtml[cssInHtml.length] = markup(sel)[0];
+    cssInHtml.length ++
+    
+    //Check for nothing found
+    if(cssInHtml[0] === undefined){
+        throw new Error("No selector found in document.")    
+    }
+    
+    //Get classes from html:  atributes -> css -> flatten the arrays
     classes = [].concat.apply([],[].map.call(cssInHtml,getAtribs).map(getClassesFromHtml));
-    //console.log(classes) 
+    console.log(classes) 
     
     //Get CSS styles from css: parse rules->filter selectors ->parseToString 
     var usedSelectors = cssom.parse(css).cssRules.filter(getUsedSelectors).map(parseSelectorsToString).join("");
@@ -19,6 +29,7 @@ module.exports = function (sel,html,css){
     return {usedCss:usedSelectors,unUsedCss:unUsedSelectors};
     
     //Helper functions  for HTML parsing
+    
     function getAtribs(item){
         return item.attribs
     }
